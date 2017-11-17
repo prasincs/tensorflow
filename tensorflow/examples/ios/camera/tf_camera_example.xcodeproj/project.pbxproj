@@ -11,7 +11,6 @@
 		1C3C9DCC1ED3AB4200B8B5FA /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1C3C9DCA1ED3AB4200B8B5FA /* main.mm */; };
 		1C968D171ED3B8F20054F5C3 /* grace_hopper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 59A3CFF51CF4E68100C4259F /* grace_hopper.jpg */; };
 		1C968D181ED3B8F20054F5C3 /* imagenet_comp_graph_label_strings.txt in Resources */ = {isa = PBXBuildFile; fileRef = 59A3CFF71CF4E68100C4259F /* imagenet_comp_graph_label_strings.txt */; };
-		1C968D191ED3B8F20054F5C3 /* tensorflow_inception_graph.pb in Resources */ = {isa = PBXBuildFile; fileRef = 59A3CFF91CF4E68100C4259F /* tensorflow_inception_graph.pb */; };
 		1C99111C1ED3B0E600A6BFB9 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C99111B1ED3B0E600A6BFB9 /* MainStoryboard_iPhone.storyboard */; };
 		1CA5EB931ED3ABFB00247A34 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA5EB921ED3ABFB00247A34 /* CoreMedia.framework */; };
 		1CB47D491ED3AD1700DF7666 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CB47D481ED3AD1700DF7666 /* AVFoundation.framework */; };
@@ -20,6 +19,9 @@
 		1CDB2D4C1ED3A9CD007929E9 /* tensorflow_utils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1CDB2D481ED3A9CD007929E9 /* tensorflow_utils.mm */; };
 		1CDB2D4E1ED3AA35007929E9 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1CDB2D4D1ED3AA35007929E9 /* Info.plist */; };
 		54DC6C3C5F734F3A58069F0C /* libPods-tf_camera_example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BA8BF92C84895BFE59D8236 /* libPods-tf_camera_example.a */; };
+		F7878A441FBECDA30084F28F /* tensorflow_inception_graph_2.pb in Resources */ = {isa = PBXBuildFile; fileRef = F7878A431FBECCA80084F28F /* tensorflow_inception_graph_2.pb */; };
+		F7878A451FBECDA30084F28F /* tensorflow_inception_graph_1.pb in Resources */ = {isa = PBXBuildFile; fileRef = F7878A421FBECC9C0084F28F /* tensorflow_inception_graph_1.pb */; };
+		F7A2B35E1FBE8A4900998528 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7A2B35D1FBE8A4900998528 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,7 +47,9 @@
 		55ED318E8D29C8AFEF03DF1E /* Pods-tf_camera_example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tf_camera_example.release.xcconfig"; path = "Pods/Target Support Files/Pods-tf_camera_example/Pods-tf_camera_example.release.xcconfig"; sourceTree = "<group>"; };
 		59A3CFF51CF4E68100C4259F /* grace_hopper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = grace_hopper.jpg; sourceTree = "<group>"; };
 		59A3CFF71CF4E68100C4259F /* imagenet_comp_graph_label_strings.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = imagenet_comp_graph_label_strings.txt; sourceTree = "<group>"; };
-		59A3CFF91CF4E68100C4259F /* tensorflow_inception_graph.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = tensorflow_inception_graph.pb; sourceTree = "<group>"; };
+		F7878A421FBECC9C0084F28F /* tensorflow_inception_graph_1.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = tensorflow_inception_graph_1.pb; sourceTree = "<group>"; };
+		F7878A431FBECCA80084F28F /* tensorflow_inception_graph_2.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = tensorflow_inception_graph_2.pb; sourceTree = "<group>"; };
+		F7A2B35D1FBE8A4900998528 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = tf_camera_example/Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +91,7 @@
 		591157921CF4011C00C31E3A = {
 			isa = PBXGroup;
 			children = (
+				F7A2B35D1FBE8A4900998528 /* Images.xcassets */,
 				1C99111B1ED3B0E600A6BFB9 /* MainStoryboard_iPhone.storyboard */,
 				1C3C9DC81ED3AB4200B8B5FA /* ios_image_load.h */,
 				1C3C9DC91ED3AB4200B8B5FA /* ios_image_load.mm */,
@@ -116,9 +121,10 @@
 		59A3CFF31CF4E68100C4259F /* data */ = {
 			isa = PBXGroup;
 			children = (
+				F7878A431FBECCA80084F28F /* tensorflow_inception_graph_2.pb */,
+				F7878A421FBECC9C0084F28F /* tensorflow_inception_graph_1.pb */,
 				59A3CFF51CF4E68100C4259F /* grace_hopper.jpg */,
 				59A3CFF71CF4E68100C4259F /* imagenet_comp_graph_label_strings.txt */,
-				59A3CFF91CF4E68100C4259F /* tensorflow_inception_graph.pb */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -158,7 +164,7 @@
 				TargetAttributes = {
 					1C564C0C1ED3A92E00087306 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 5DRPWFQSHP;
+						DevelopmentTeam = U6D7VKAB8N;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -186,9 +192,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7878A441FBECDA30084F28F /* tensorflow_inception_graph_2.pb in Resources */,
+				F7878A451FBECDA30084F28F /* tensorflow_inception_graph_1.pb in Resources */,
 				1C968D171ED3B8F20054F5C3 /* grace_hopper.jpg in Resources */,
 				1C968D181ED3B8F20054F5C3 /* imagenet_comp_graph_label_strings.txt in Resources */,
-				1C968D191ED3B8F20054F5C3 /* tensorflow_inception_graph.pb in Resources */,
+				F7A2B35E1FBE8A4900998528 /* Images.xcassets in Resources */,
 				1C99111C1ED3B0E600A6BFB9 /* MainStoryboard_iPhone.storyboard in Resources */,
 				1CDB2D4E1ED3AA35007929E9 /* Info.plist in Resources */,
 			);
@@ -233,13 +241,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-tf_camera_example-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -264,15 +275,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3BC5BE4BBD09374D3E98F082 /* Pods-tf_camera_example.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				DEVELOPMENT_TEAM = 5DRPWFQSHP;
+				DEVELOPMENT_TEAM = U6D7VKAB8N;
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.pf.tf-camera-example";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nextdoorhacker.tf-camera-example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -284,15 +294,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 55ED318E8D29C8AFEF03DF1E /* Pods-tf_camera_example.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				DEVELOPMENT_TEAM = 5DRPWFQSHP;
+				DEVELOPMENT_TEAM = U6D7VKAB8N;
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.pf.tf-camera-example";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nextdoorhacker.tf-camera-example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;

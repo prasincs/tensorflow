@@ -1,46 +1,86 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="2">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Menlo.ttc">
+            <string>Menlo-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Camera Example View Controller-->
         <scene sceneID="5">
             <objects>
                 <viewController id="2" customClass="CameraExampleViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="3">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qdH-dD-Rud"/>
+                        <viewControllerLayoutGuide type="bottom" id="Hvd-8h-mwM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="top" id="3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" id="12">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="522"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="12">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="621"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <gestureRecognizers/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="iD8-yH-eWH">
-                                <rect key="frame" x="0.0" y="454" width="320" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="20"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iD8-yH-eWH">
+                                <rect key="frame" x="9" y="626" width="187" height="33"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="14"/>
                                 <state key="normal" title="Freeze Frame">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="takePicture:" destination="2" eventType="touchUpInside" id="BTy-7E-XUS"/>
                                 </connections>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="l8z-io-47X">
+                                <rect key="frame" x="229" y="628" width="121" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="121" id="MR6-1d-CHi"/>
+                                    <constraint firstAttribute="height" constant="28" id="z4S-Af-bee"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Model1"/>
+                                    <segment title="Model2"/>
+                                </segments>
+                                <connections>
+                                    <action selector="switchModels:" destination="2" eventType="valueChanged" id="bge-Jt-Pdn"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Hvd-8h-mwM" firstAttribute="top" secondItem="iD8-yH-eWH" secondAttribute="bottom" constant="8" symbolic="YES" id="4dL-iP-TLB"/>
+                            <constraint firstItem="iD8-yH-eWH" firstAttribute="leading" secondItem="3" secondAttribute="leadingMargin" constant="-7" id="60P-f9-rSF"/>
+                            <constraint firstAttribute="trailing" secondItem="12" secondAttribute="trailing" id="7QI-nP-CNY"/>
+                            <constraint firstItem="iD8-yH-eWH" firstAttribute="top" secondItem="12" secondAttribute="bottom" constant="5" id="Bhq-2S-Gc0"/>
+                            <constraint firstItem="12" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="DY6-fV-Tbe"/>
+                            <constraint firstItem="12" firstAttribute="top" secondItem="3" secondAttribute="top" id="MRL-Kf-HHb"/>
+                            <constraint firstItem="iD8-yH-eWH" firstAttribute="centerY" secondItem="l8z-io-47X" secondAttribute="centerY" id="ccg-of-XDK"/>
+                            <constraint firstItem="l8z-io-47X" firstAttribute="leading" secondItem="iD8-yH-eWH" secondAttribute="trailing" constant="33" id="pA6-Tn-VyG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="l8z-io-47X" secondAttribute="trailing" constant="9" id="roG-l3-tDU"/>
+                            <constraint firstItem="l8z-io-47X" firstAttribute="top" secondItem="12" secondAttribute="bottom" constant="7" id="vXT-Gl-H7O"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="previewView" destination="12" id="13"/>
+                        <outlet property="switchModelControl" destination="l8z-io-47X" id="FdA-n6-xuz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="67.5" y="30.5"/>
         </scene>
     </scenes>
 </document>

@@ -24,7 +24,7 @@
 
 // If you have your own model, modify this to the file name, and make sure
 // you've added the file to your app resources too.
-static NSString* model_file_name = @"tensorflow_inception_graph";
+static NSString* model_file_name = @"tensorflow_inception_graph_1";
 static NSString* model_file_type = @"pb";
 // This controls whether we'll be loading a plain GraphDef proto, or a
 // file created by the convert_graphdef_memmapped_format utility that wraps a
@@ -43,6 +43,8 @@ const float input_std = 1.0f;
 const std::string input_layer_name = "input";
 const std::string output_layer_name = "softmax1";
 
+
+
 static void *AVCaptureStillImageIsCapturingStillImageContext =
     &AVCaptureStillImageIsCapturingStillImageContext;
 
@@ -52,6 +54,9 @@ static void *AVCaptureStillImageIsCapturingStillImageContext =
 @end
 
 @implementation CameraExampleViewController
+
+  @synthesize switchModelControl;
+BOOL changingSessions;
 
 - (void)setupAVCapture {
   NSError *error = nil;
@@ -165,6 +170,42 @@ static void *AVCaptureStillImageIsCapturingStillImageContext =
   else if (deviceOrientation == UIDeviceOrientationLandscapeRight)
     result = AVCaptureVideoOrientationLandscapeLeft;
   return result;
+}
+
+- (IBAction)switchModels:(id)sender {
+    tensorflow::Status load_status;
+    changingSessions = true;
+    [NSThread sleepForTimeInterval:.5];
+    if (switchModelControl.selectedSegmentIndex == 0) {
+        NSLog(@"pressed model 1");
+        //std::unique_ptr<tensorflow::Session> tf_session2;
+        load_status = LoadModel(@"tensorflow_inception_graph_1", model_file_type, &tf_session);
+        if (!load_status.ok()) {
+            LOG(FATAL) << "Couldn't load model: " << load_status;
+        }
+        
+        tensorflow::Status labels_status =
+        LoadLabels(labels_file_name, labels_file_type, &labels);
+        if (!labels_status.ok()) {
+            LOG(FATAL) << "Couldn't load labels: " << labels_status;
+        }
+       //tf_session.reset(tf_session2.get());
+    } else if(switchModelControl.selectedSegmentIndex == 1) {
+        NSLog(@"pressed model 2");
+        //std::unique_ptr<tensorflow::Session> tf_session2;
+        load_status = LoadModel(@"tensorflow_inception_graph_2", model_file_type, &tf_session);
+        if (!load_status.ok()) {
+            LOG(FATAL) << "Couldn't load model: " << load_status;
+        }
+        
+        tensorflow::Status labels_status =
+        LoadLabels(labels_file_name, labels_file_type, &labels);
+        if (!labels_status.ok()) {
+            LOG(FATAL) << "Couldn't load labels: " << labels_status;
+        }
+        //tf_session.reset(tf_session2.get());
+    }
+    changingSessions = false;
 }
 
 - (IBAction)takePicture:(id)sender {
@@ -312,30 +353,35 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 
   CVPixelBufferUnlockBaseAddress(pixelBuffer, unlockFlags);
 
-  if (tf_session.get()) {
-    std::vector<tensorflow::Tensor> outputs;
-    tensorflow::Status run_status = tf_session->Run(
-        {{input_layer_name, image_tensor}}, {output_layer_name}, {}, &outputs);
-    if (!run_status.ok()) {
-      LOG(ERROR) << "Running model failed:" << run_status;
-    } else {
-      tensorflow::Tensor *output = &outputs[0];
-      auto predictions = output->flat<float>();
+  if (!changingSessions) {
+      if (tf_session.get()){
+        std::vector<tensorflow::Tensor> outputs;
+        
+        tensorflow::Status run_status = tf_session->Run(
+            {{input_layer_name, image_tensor}}, {output_layer_name}, {}, &outputs);
+        if (!run_status.ok()) {
+          LOG(ERROR) << "Running model failed:" << run_status;
+        } else {
+          tensorflow::Tensor *output = &outputs[0];
+          auto predictions = output->flat<float>();
 
-      NSMutableDictionary *newValues = [NSMutableDictionary dictionary];
-      for (int index = 0; index < predictions.size(); index += 1) {
-        const float predictionValue = predictions(index);
-        if (predictionValue > 0.05f) {
-          std::string label = labels[index % predictions.size()];
-          NSString *labelObject = [NSString stringWithUTF8String:label.c_str()];
-          NSNumber *valueObject = [NSNumber numberWithFloat:predictionValue];
-          [newValues setObject:valueObject forKey:labelObject];
+          NSMutableDictionary *newValues = [NSMutableDictionary dictionary];
+          for (int index = 0; index < predictions.size(); index += 1) {
+            const float predictionValue = predictions(index);
+            if (predictionValue > 0.05f) {
+              std::string label = labels[index % predictions.size()];
+              NSString *labelObject = [NSString stringWithUTF8String:label.c_str()];
+              NSNumber *valueObject = [NSNumber numberWithFloat:predictionValue];
+              [newValues setObject:valueObject forKey:labelObject];
+            }
+          }
+          dispatch_async(dispatch_get_main_queue(), ^(void) {
+            [self setPredictionValues:newValues];
+          });
         }
       }
-      dispatch_async(dispatch_get_main_queue(), ^(void) {
-        [self setPredictionValues:newValues];
-      });
-    }
+  }else {
+      LOG(INFO) << "Skipping until session changed";
   }
   CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
 }

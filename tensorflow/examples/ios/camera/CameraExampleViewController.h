@@ -23,7 +23,9 @@
     : UIViewController<UIGestureRecognizerDelegate,
                        AVCaptureVideoDataOutputSampleBufferDelegate> {
   IBOutlet UIView *previewView;
+  IBOutlet UISegmentedControl *switchModelControl;
   IBOutlet UISegmentedControl *camerasControl;
+
   AVCaptureVideoPreviewLayer *previewLayer;
   AVCaptureVideoDataOutput *videoDataOutput;
   dispatch_queue_t videoDataOutputQueue;
@@ -40,8 +42,10 @@
   std::vector<std::string> labels;
 }
 @property(strong, nonatomic) CATextLayer *predictionTextLayer;
+@property (nonatomic, retain) UISegmentedControl *switchModelControl;
 
 - (IBAction)takePicture:(id)sender;
 - (IBAction)switchCameras:(id)sender;
+- (IBAction)switchModels:(id)sender;
 
 @end
